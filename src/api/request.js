@@ -2,7 +2,7 @@ import axios from 'axios'
 import { ElMessage } from 'element-plus'
 import router from '@/router'
 
-const request = axios.create({ baseURL: '/api', timeout: 15000 })
+const request = axios.create({ baseURL: import.meta.env.VITE_API_BASE || 'http://127.0.0.1:8000/api', timeout: 15000 })
 
 request.interceptors.request.use((config) => {
   const token = localStorage.getItem('token')
