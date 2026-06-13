@@ -180,4 +180,11 @@ const scoreClass = computed(() => {
   gap: 6px;
 }
 .dot { opacity: 0.4; }
+.movie-card {
+  min-width: 0;
+}
+.poster-wrap img,
+.poster {
+  max-width: 100%;
+}
 </style>

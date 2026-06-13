@@ -369,4 +369,9 @@ onUnmounted(() => {
 }
 .c-box { height: 260px; }
 .c-box-tall { height: 564px; }
+
+@media (max-width: 900px) {
+  .charts-grid { grid-template-columns: 1fr !important; }
+  .span-2, .span-3, .span-4, .span-6 { grid-column: span 1 !important; }
+}
 </style>

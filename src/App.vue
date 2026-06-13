@@ -100,4 +100,11 @@ html, body {
   opacity: 0;
   transform: translateY(-8px);
 }
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+#app {
+  overflow-x: hidden;
+}
 </style>

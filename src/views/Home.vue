@@ -527,4 +527,28 @@ const loadRecommended = async () => {
   opacity: 1;
   transform: translateX(4px);
 }
+
+@media (max-width: 768px) {
+  .hero { height: auto; min-height: auto; padding: 32px 0; }
+  .hero-slide { position: relative; }
+  .hero-content { flex-direction: column; padding: 0 20px; gap: 24px; }
+  .hero-info { max-width: 100%; }
+  .hero-poster { display: none; }
+  .stats-bar { flex-wrap: wrap; padding: 16px; }
+  .stat-item { padding: 8px 16px; border-right: none; }
+  .charts-grid, .genre-grid, .movie-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .movie-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 10px !important;
+  }
+  .scroll-inner .s-card,
+  .scroll-card {
+    width: 110px !important;
+  }
+  .genre-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+  }
+  .gc-name { font-size: 13px !important; }
+}
 </style>

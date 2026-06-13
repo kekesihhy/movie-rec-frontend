@@ -276,4 +276,13 @@ const handleSend = () => sendMessage()
 }
 .send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 .send-btn:not(:disabled):hover { background: #334155; }
+
+@media (max-width: 480px) {
+  .chat-window {
+    width: calc(100vw - 24px);
+    right: 12px; left: 12px;
+    height: 70vh;
+  }
+  .chat-fab { right: 16px; bottom: 16px; }
+}
 </style>

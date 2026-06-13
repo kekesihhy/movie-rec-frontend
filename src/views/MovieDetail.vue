@@ -388,4 +388,13 @@ onMounted(() => loadMovie(route.params.id))
 .loading-page {
   max-width: 1400px; margin: 80px auto; padding: 0 80px;
 }
+
+@media (max-width: 768px) {
+  .hero-inner { flex-direction: column; padding: 32px 20px; gap: 24px; }
+  .poster-img, .poster-placeholder { width: 160px; margin: 0 auto; }
+  .detail-body { padding: 24px 20px; }
+  .card-title { font-size: 12px; }
+  .card-meta  { font-size: 11px; }
+  .score-badge { font-size: 11px; padding: 2px 6px; }
+}
 </style>

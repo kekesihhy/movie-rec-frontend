@@ -23,6 +23,10 @@
           @keyup.enter="handleSearch"
         />
       </div>
+      <button class="hamburger-btn" @click="mobileMenuOpen = !mobileMenuOpen">
+        <span v-if="!mobileMenuOpen">☰</span>
+        <span v-else>✕</span>
+      </button>
 
       <!-- 右侧操作区 -->
       <div class="nav-actions">
@@ -72,6 +76,34 @@
       </div>
 
     </div>
+    <Transition name="mobile-menu">
+      <div class="mobile-menu" v-if="mobileMenuOpen">
+        <div class="mobile-search">
+          <el-input
+            v-model="searchQuery"
+            placeholder="搜索电影..."
+            :prefix-icon="Search"
+            clearable
+            @keyup.enter="handleSearch"
+          />
+        </div>
+        <router-link to="/" class="mobile-link" @click="mobileMenuOpen=false">首页</router-link>
+        <router-link to="/browse" class="mobile-link" @click="mobileMenuOpen=false">浏览</router-link>
+        <router-link to="/analytics" class="mobile-link" @click="mobileMenuOpen=false">数据分析</router-link>
+        <div class="mobile-divider" />
+        <button class="mobile-link" @click="themeStore.toggle()">
+          {{ themeStore.isDark ? '☀️ 切换浅色' : '🌙 切换深色' }}
+        </button>
+        <template v-if="!userStore.isLoggedIn">
+          <router-link to="/login" class="mobile-link" @click="mobileMenuOpen=false">登录</router-link>
+          <router-link to="/register" class="mobile-link" @click="mobileMenuOpen=false">注册</router-link>
+        </template>
+        <template v-else>
+          <router-link to="/profile" class="mobile-link" @click="mobileMenuOpen=false">个人中心</router-link>
+          <button class="mobile-link" @click="handleCommand('logout')">退出登录</button>
+        </template>
+      </div>
+    </Transition>
   </nav>
 </template>
 
@@ -85,6 +117,7 @@ import { useThemeStore } from '@/stores/theme'
 const router = useRouter()
 const userStore = useUserStore()
 const themeStore = useThemeStore()
+const mobileMenuOpen = ref(false)
 
 const searchQuery = ref('')
 const isScrolled = ref(false)
@@ -253,4 +286,67 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   border-bottom: 1px solid var(--border, #eee);
   margin-bottom: 4px;
 }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-search { display: none; }
+  .nav-inner { gap: 12px; padding: 0 16px; }
+  .nav-logo { font-size: 17px; }
+}
+
+.hamburger-btn {
+  display: none;
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 18px;
+  cursor: pointer;
+  align-items: center; justify-content: center;
+}
+
+.mobile-menu {
+  position: absolute;
+  top: 64px; left: 0; right: 0;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  padding: 16px;
+  display: flex; flex-direction: column; gap: 4px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+.mobile-search { margin-bottom: 8px; }
+.mobile-search :deep(.el-input__wrapper) {
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: none !important;
+}
+.mobile-search :deep(.el-input__inner) { color: var(--text-primary) !important; }
+
+.mobile-link {
+  display: block;
+  width: 100%; text-align: left;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 14px; font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  background: none; border: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.mobile-link:hover { background: var(--bg-elevated); color: var(--text-primary); }
+.mobile-link.router-link-active { color: var(--accent); }
+.mobile-divider { height: 1px; background: var(--border); margin: 6px 0; }
+
+.mobile-menu-enter-active,
+.mobile-menu-leave-active { transition: all 0.2s ease; }
+.mobile-menu-enter-from,
+.mobile-menu-leave-to { opacity: 0; transform: translateY(-8px); }
+
+@media (max-width: 768px) {
+  .hamburger-btn { display: flex; }
+  .nav-actions { display: none; }
+}
+
 </style>
