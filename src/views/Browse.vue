@@ -354,8 +354,30 @@ onMounted(() => { loadGenres(); loadMovies(currentPage.value) })
   justify-content: center;
   margin-top: 40px;
 }
-.pagination-wrap :deep(.el-pagination.is-background .el-pager li.is-active) {
+.pagination-wrap :deep(.el-pagination) {
+  color: var(--text-secondary);
+}
+.pagination-wrap :deep(.el-pagination .btn-prev),
+.pagination-wrap :deep(.el-pagination .btn-next),
+.pagination-wrap :deep(.el-pager li) {
+  background: var(--bg-elevated) !important;
+  color: var(--text-secondary) !important;
+}
+.pagination-wrap :deep(.el-pager li.is-active) {
   background: var(--accent) !important;
+  color: #fff !important;
+}
+.pagination-wrap :deep(.el-pagination__total),
+.pagination-wrap :deep(.el-pagination__jump) {
+  color: var(--text-secondary) !important;
+}
+.pagination-wrap :deep(.el-pagination .el-input__wrapper) {
+  background: var(--bg-elevated) !important;
+  box-shadow: none !important;
+  border: 1px solid var(--border) !important;
+}
+.pagination-wrap :deep(.el-pagination .el-input__inner) {
+  color: var(--text-primary) !important;
 }
 .header-right {
   display: flex;

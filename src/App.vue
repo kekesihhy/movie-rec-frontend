@@ -9,7 +9,7 @@
       </router-view>
     </main>
     <Footer v-if="showNav" />
-    <ChatBot />
+    <ChatBot v-if="showNav" />
     <DisclaimerToast />
   </div>
 </template>
