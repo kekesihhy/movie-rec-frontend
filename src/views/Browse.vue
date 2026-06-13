@@ -403,4 +403,9 @@ onMounted(() => { loadGenres(); loadMovies(currentPage.value) })
   color: var(--text-primary) !important;
   border-color: var(--text-muted) !important;
 }
+
+.browse-main :deep(.el-select__wrapper) {
+  background-color: #0a0a0f !important;
+  box-shadow: 0 0 0 1px #ffffff99 inset !important;
+}
 </style>
